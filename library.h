@@ -2,7 +2,7 @@
 
 /*** READ DATA and STORE data in Nset:    *************************************/
 /******************************************************************************/
-map<__int128_t, unsigned int> read_datafile(unsigned int *N, string file = datafilename); // filename to specify in data.h
+map<__int128_t, unsigned int> read_datafile(unsigned int *N, string input_data_file); // filename to specify in data.h
 
 /*** READ BASIS from a FILE:    ***********************************************/
 /******************************************************************************/

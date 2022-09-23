@@ -304,8 +304,15 @@ map<unsigned int, __int128_t> Matrix2(map<__int128_t, unsigned int> Kset, unsign
 /******************************************************************************/
 /*******************************   main function   ****************************/
 /******************************************************************************/
-int main()
+int main(int argc, char **argv)
 {
+
+    const string input_data_file = INPUT_directory + argv[1] + ".dat";
+    const string input_comm_file = INPUT_directory + argv[2] + ".dat";
+
+    cout << "input data file: " << input_data_file << endl;
+    cout << "input data file: " << input_comm_file << endl;
+
     cout << "--->> Create OUTPUT Folder: (if needed) ";
     system(("mkdir -p " + OUTPUT_directory).c_str());
     cout << endl;
@@ -315,7 +322,7 @@ int main()
     cout << endl << "*******************************************************************************************" << endl;
 
     unsigned int N = 0; // will contain the number of datapoints in the dataset
-    map<__int128_t, unsigned int> Kset = read_datafile(&N);
+    map<__int128_t, unsigned int> Kset = read_datafile(&N, input_data_file);
 
     if (N == 0) { return 0; } // Terminate program if the file can't be found
 
@@ -362,7 +369,7 @@ int main()
     cout << "Average comm size : " << (double)n / (double)fp1.size() << endl << endl;
 
     cout << "#########  THEORETICAL   #########" << endl;
-    map<unsigned int, __int128_t> fp2 = read_communities(communityfile);
+    map<unsigned int, __int128_t> fp2 = read_communities(input_comm_file);
 
     double LE_t = LogE_MCM(Kset, fp2, N);
     // Print_Partition(fp2);

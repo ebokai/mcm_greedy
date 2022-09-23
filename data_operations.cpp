@@ -15,16 +15,16 @@
 /**************************     READ FILE    **********************************/
 /******************************************************************************/
 /**************    READ DATA and STORE them in Nset    ************************/
-map<__int128_t, unsigned int> read_datafile(unsigned int *N)    // O(N)  where N = data set size
+map<__int128_t, unsigned int> read_datafile(unsigned int *N, string input_data_file)    // O(N)  where N = data set size
 {
   string line, line2;     __int128_t nb = 0;
   (*N) = 0;            // N = dataset size
-  cout << endl << "--->> Read \"" << datafilename << "\",\t Build Nset... 444";
+  cout << endl << "--->> Read \"" << input_data_file << "\",\t Build Nset... 444";
 
 // ***** data are store in Nset:  ********************************
   map<__int128_t, unsigned int> Nset; // Nset[mu] = #of time state mu appears in the data set
   
-  ifstream myfile (datafilename.c_str());
+  ifstream myfile (input_data_file.c_str());
   if (myfile.is_open())
   {
     while ( getline (myfile,line))

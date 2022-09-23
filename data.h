@@ -23,6 +23,7 @@ const string datafilename = "INPUT/sampled.dat";
 // Exact community
 const string communityfile = "INPUT/community.dat";
 
+const string INPUT_directory = "INPUT/";
 const string OUTPUT_directory = "OUTPUT/";
 
 // File to store test results
