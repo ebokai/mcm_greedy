@@ -309,10 +309,10 @@ int main(int argc, char **argv)
 
     const string input_name = argv[1];
     const string input_data_file = INPUT_directory + input_name + "_data.dat";
-    const string input_comm_file = INPUT_directory + input_name + "_comms.dat";
+    const string input_comm_file = INPUT_directory + "true_comms.dat";
 
     cout << "input data file: " << input_data_file << endl;
-    cout << "input data file: " << input_comm_file << endl;
+    cout << "input community file: " << input_comm_file << endl;
 
     cout << "--->> Create OUTPUT Folder: (if needed) ";
     system(("mkdir -p " + OUTPUT_directory).c_str());
