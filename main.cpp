@@ -36,6 +36,7 @@ void Print_Partition(map<unsigned int, __int128_t> partition)
         bitset<n> hi{ static_cast<unsigned long long>((*it).second >> 64) },
             lo{ static_cast<unsigned long long>((*it).second) },
             bits{ (hi << 64) | lo };
+
         cout << (*it).first << "\t " << bits << endl;
     }
     cout << endl;
@@ -333,10 +334,17 @@ int main()
     // *** Time it takes to find partition
     chrono::duration<double> elapsed = end - start;
 
+
+    // WRITE RESULTS TO FILE 
+    ofstream output_file;
+    string fname = OUTPUT_directory + "results.dat";
+    output_file.open(fname);
+
     cout << "######### EMPIRICAL #########" << endl;
     // Entropy of dataset
     double H = Entropy(Kset, N);
     cout << "H : " << H << ". Range: [0, " << n << "]" << endl << endl;
+    output_file << "H : " << H << ". Range: [0, " << n << "]" << "\n" << "\n";
 
     cout << "#########  GREEDY   #########" << endl;
     // Log evidence of MCM
@@ -345,6 +353,7 @@ int main()
 
     cout << "Elapsed time      : " << elapsed.count() << "s" << endl;
     cout << "Log-evidence      : " << LE_g << endl;
+    output_file << "Log-evidence      : " << LE_g << "\n";
     cout << "Average comm size : " << (double)n / (double)fp1.size() << endl << endl;
 
     cout << "#########  THEORETICAL   #########" << endl;
@@ -365,6 +374,7 @@ int main()
     cout << "Variation of Information      : " << VOI << endl;
     cout << "Normalized Mutual Information : " << NMI << endl;
     cout << "Difference in Log-Evidence    : " << LE_g - LE_t << endl << endl;
+
 
     return 0;
 }
