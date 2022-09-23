@@ -31,6 +31,10 @@ void Print_Partition(map<unsigned int, __int128_t> partition)
 {
     map<unsigned int, __int128_t>::iterator it;
 
+    ofstream output_community;
+    string fname = OUTPUT_directory + "community.dat";
+    output_community.open(fname);
+
     for (it = partition.begin(); it != partition.end(); it++)
     {
         bitset<n> hi{ static_cast<unsigned long long>((*it).second >> 64) },
@@ -38,8 +42,10 @@ void Print_Partition(map<unsigned int, __int128_t> partition)
             bits{ (hi << 64) | lo };
 
         cout << (*it).first << "\t " << bits << endl;
+        output_community << (*it).first << "\t " << bits << "\n";
     }
     cout << endl;
+    output_community.close();
 }
 
 map<unsigned int, __int128_t> Matrix(map<__int128_t, unsigned int> Kset, unsigned int N, unsigned int r = n)
@@ -359,7 +365,7 @@ int main()
     map<unsigned int, __int128_t> fp2 = read_communities(communityfile);
 
     double LE_t = LogE_MCM(Kset, fp2, N);
-    Print_Partition(fp2);
+    // Print_Partition(fp2);
 
     cout << "Log-evidence      : " << LE_t << endl;
     cout << "Average comm size : " << (double) n / (double) fp2.size() << endl << endl;
