@@ -46,6 +46,7 @@ use setup.bat
 
 **To execute:** 
 use run.bat (specify input filename)
+
 use `.\mcm_greedy.exe <FILENAME>` 
 
 ## License
