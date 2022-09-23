@@ -354,7 +354,7 @@ int main()
     Print_Partition(fp2);
 
     cout << "Log-evidence      : " << LE_t << endl;
-    cout << "Average comm size : " << (double)n / (double)fp2.size() << endl << endl;
+    cout << "Average comm size : " << (double) n / (double) fp2.size() << endl << endl;
 
     cout << "#########  COMPARATIVE MEASURES   #########" << endl;
     double VOI = Var_of_Inf(fp1, fp2);

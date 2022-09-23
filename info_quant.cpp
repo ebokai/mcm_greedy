@@ -30,7 +30,7 @@ bool is_subset(map<unsigned int, __int128_t> fp1, map<unsigned int, __int128_t> 
 
 double Entropy(map <__int128_t, unsigned int> Kset, unsigned int N)
 {
-    // Entropy of emperical data
+    // Entropy of empirical data
     double H = 0;
     double p;
 
