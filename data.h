@@ -1,4 +1,9 @@
+#define _USE_MATH_DEFINES
+
 #include <iostream>
+#include <bitset>
+#include <cmath>     
+#include <map>
 
 using namespace std;
 

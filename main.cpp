@@ -1,21 +1,10 @@
-// To compile: g++ -std=c++11 -O3 main.cpp Operations_OnData.cpp LogE.cpp LogL.cpp Complexity.cpp info_quant.cpp metropolis.cpp best_basis.cpp
-// To run: time ./a.out
-//
-#define _USE_MATH_DEFINES
-#include <iostream>
 #include <fstream>
 #include <sstream>
 #include <list>
-#include <bitset>
-#include <map>
-#include <cmath>       /* tgamma */
 #include <random>
-
 #include <ctime> // for chrono
 #include <ratio> // for chrono
 #include <chrono> // for chrono
-
-using namespace std;
 
 /********************************************************************/
 /**************************    CONSTANTS    *************************/
