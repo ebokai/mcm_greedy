@@ -1,13 +1,6 @@
-#include <iostream>
 #include <list>
 #include <fstream>
 #include <sstream>
-#include <map>
-#include <bitset>
-#include<cmath>
-
-using namespace std;
-
 #include "data.h"
 
 // Create a bitset for integers up to 2**128

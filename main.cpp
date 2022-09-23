@@ -24,7 +24,7 @@ void initialise_generator()
     gen.seed(seed);     //for mt19937
 }
 
-unsigned int A = 5;   // A = number of parts
+unsigned int A = 5; // A = number of parts
 uniform_int_distribution<int> uni(0., A - 1);
 
 void Print_Partition(map<unsigned int, __int128_t> partition)
