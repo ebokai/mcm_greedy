@@ -337,15 +337,14 @@ int main()
 
     // WRITE RESULTS TO FILE 
     ofstream output_file;
-    string fname = OUTPUT_directory + "results.dat";
+    string fname = OUTPUT_directory + "mcm_results.dat";
     output_file.open(fname);
 
     cout << "######### EMPIRICAL #########" << endl;
     // Entropy of dataset
     double H = Entropy(Kset, N);
     cout << "H : " << H << ". Range: [0, " << n << "]" << endl << endl;
-    output_file << "H : " << H << ". Range: [0, " << n << "]" << "\n" << "\n";
-
+    
     cout << "#########  GREEDY   #########" << endl;
     // Log evidence of MCM
     double LE_g = LogE_MCM(Kset, fp1, N);
@@ -353,7 +352,7 @@ int main()
 
     cout << "Elapsed time      : " << elapsed.count() << "s" << endl;
     cout << "Log-evidence      : " << LE_g << endl;
-    output_file << "Log-evidence      : " << LE_g << "\n";
+    
     cout << "Average comm size : " << (double)n / (double)fp1.size() << endl << endl;
 
     cout << "#########  THEORETICAL   #########" << endl;
@@ -374,6 +373,16 @@ int main()
     cout << "Variation of Information      : " << VOI << endl;
     cout << "Normalized Mutual Information : " << NMI << endl;
     cout << "Difference in Log-Evidence    : " << LE_g - LE_t << endl << endl;
+
+    output_file << "entropy;" << H << "\n";
+    output_file << "LOGE_mcm;" << LE_g << "\n";
+    output_file << "LOGE_true;" << LE_t << "\n";
+    output_file << "DLOGE;" << LE_g - LE_t << "\n";
+    output_file << "VOI;" << VOI << "\n";
+    output_file << "NMI;" << NMI << "\n";
+
+    output_file.close();
+
 
 
     return 0;
