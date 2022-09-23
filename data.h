@@ -40,15 +40,9 @@ struct Interaction
     double av_D;      // average in the generated Data
 };
 
-// // Not used
-// const string basis_IntegerRepresentation_filename = "INPUT/SCOTUS_n9_Basis_Integer.dat";		// Input basis file
-// const string basis_BinaryRepresentation_filename = "INPUT/SCOTUS_n9_Basis_Binary.dat";		// Input basis file
 
-// const string basis_FromIndices_filename = "INPUT/Big5PT_Best_Basis.dat";
-// const string MCM_FromIndices_filename = "INPUT/Big5PT_Best_MCM_7.dat";
 
 //Structure with the final information for the probability of appearance of each operator in the dataset
-
 struct Operator
 {
   uint32_t bin;     // binary representation of the operator

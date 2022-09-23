@@ -1,11 +1,7 @@
-#define _USE_MATH_DEFINES
-#include <iostream>
 #include <vector>
 #include <fstream>
 #include <sstream>
 #include <list>
-#include <bitset>
-#include <map>
 #include <cstring>
 
 /********************************************************************/
@@ -121,24 +117,6 @@ map<__int128_t, unsigned int> read_datafile(unsigned int *N, string file = dataf
   return Nset;
 }
 
-/*
-void Print_File_Nset(map<__int128_t, unsigned int> Nset)
-{
-  map<__int128_t, unsigned int>::iterator it;
-  it=Nset.begin();
-  __int128_t s;
-
-//  s=it->first;
-//  cout << s << endl;  
-
-//  for(it=Nset.begin(); it!=Nset.end(); it++)
-  for (int i=0; i<10; i++)
-  {
-    //s=it->first;
-    cout << (*it).first << "\t" << (*it).second << endl;
-    it++;
-  }
-}*/
 
 void Print_File_Nset (map<__int128_t, unsigned int> Nset, unsigned int N, string OUTPUTfilename)
 // map.second = nb of time that the state map.first appears in the data set
