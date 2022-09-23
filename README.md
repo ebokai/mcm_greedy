@@ -48,11 +48,6 @@ use setup.bat
 use run.bat (specify input filename)
 use `.\mcm_greedy.exe <FILENAME>` 
 
-
-## Examples
-
-All the useful functions that can be called from `int main()` are declared at the beginning of the `main.cpp` file, and described in the sections below. For hands-on and simple tests of the program, check the examples in the function `int main()` of the `main.cpp` file. In the input folder, we provided the binary dataset `Dataset_Shapes_n9_N1e5.dat`, which is the dataset used in the section "Boolean description of a binary dataset" of Ref. [1]. 
-
 ## License
 
 This code is an open source project under the GNU GPLv3.
