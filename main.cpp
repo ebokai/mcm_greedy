@@ -344,7 +344,7 @@ int main()
     // *** Time it takes to find partition
     chrono::duration<double> elapsed = end - start;
 
-    cout << "######### EMPERICAL #########" << endl;
+    cout << "######### EMPIRICAL #########" << endl;
     // Entropy of dataset
     double H = Entropy(Kset, N);
     cout << "H : " << H << ". Range: [0, " << n << "]" << endl << endl;
