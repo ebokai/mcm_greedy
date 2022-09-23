@@ -15,21 +15,23 @@ const unsigned int n = 20;                          // number of spin variables
 const __int128_t un = 1;
 const __int128_t NOp_tot = (un << n) - 1;
 const unsigned int alpha = 3;
-
-
-
-// Input datafile
-const string datafilename = "INPUT/sampled.dat";
-// Exact community
-const string communityfile = "INPUT/community.dat";
-
 const string INPUT_directory = "INPUT/";
 const string OUTPUT_directory = "OUTPUT/";
 
-// File to store test results
-const string GNdatafile = OUTPUT_directory + "test.dat";
-// Files for generating network data
-const string networkfile = OUTPUT_directory + "network.dat";
+
+
+
+// // Input datafile
+// const string datafilename = "INPUT/sampled.dat";
+// // Exact community
+// const string communityfile = "INPUT/community.dat";
+
+
+
+// // File to store test results
+// const string GNdatafile = OUTPUT_directory + "test.dat";
+// // Files for generating network data
+// const string networkfile = OUTPUT_directory + "network.dat";
 
 
 

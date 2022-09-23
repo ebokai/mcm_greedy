@@ -75,7 +75,7 @@ map<unsigned int, __int128_t> read_communities(string file)
 /**************************     READ FILE    **********************************/
 /******************************************************************************/
 /**************    READ DATA and STORE them in Nset    ************************/
-map<__int128_t, unsigned int> read_datafile(unsigned int *N, string file = datafilename)    // O(N)  where N = data set size
+map<__int128_t, unsigned int> read_datafile(unsigned int *N, string file)    // O(N)  where N = data set size
 {
     string line, line2;     char c = '1';
   __int128_t nb = 0, Op;
