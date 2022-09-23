@@ -41,13 +41,13 @@ To efficiently generate all possible set partitions of these `r` operators, we u
 
 The code uses the C++11 version of C++.
 
-**To compile:** `g++ -std=c++11 -O3 main.cpp Operations_OnData.cpp LogE.cpp LogL.cpp Complexity.cpp info_quant.cpp metropolis.cpp best_basis.cpp`
+**To compile (on windows):** 
+use setup.bat
 
-**To execute:** `./a.out`
+**To execute:** 
+use run.bat (specify input filename)
 
-## Examples
-
-All the useful functions that can be called from `int main()` are declared at the beginning of the `main.cpp` file, and described in the sections below. For hands-on and simple tests of the program, check the examples in the function `int main()` of the `main.cpp` file. In the input folder, we provided the binary dataset `Dataset_Shapes_n9_N1e5.dat`, which is the dataset used in the section "Boolean description of a binary dataset" of Ref. [1]. 
+use `.\mcm_greedy.exe <FILENAME>` 
 
 ## License
 
