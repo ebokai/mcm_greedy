@@ -27,12 +27,12 @@ void initialise_generator()
 unsigned int A = 5; // A = number of parts
 uniform_int_distribution<int> uni(0., A - 1);
 
-void Print_Partition(map<unsigned int, __int128_t> partition)
+void Print_Partition(map<unsigned int, __int128_t> partition, string input_name)
 {
     map<unsigned int, __int128_t>::iterator it;
 
     ofstream output_community;
-    string fname = OUTPUT_directory + "community.dat";
+    string fname = OUTPUT_directory + input_name + "_mcm_comms.dat";
     output_community.open(fname);
 
     for (it = partition.begin(); it != partition.end(); it++)
@@ -307,8 +307,9 @@ map<unsigned int, __int128_t> Matrix2(map<__int128_t, unsigned int> Kset, unsign
 int main(int argc, char **argv)
 {
 
-    const string input_data_file = INPUT_directory + argv[1] + ".dat";
-    const string input_comm_file = INPUT_directory + argv[2] + ".dat";
+    const string input_name = argv[1];
+    const string input_data_file = INPUT_directory + input_name + "_data.dat";
+    const string input_comm_file = INPUT_directory + input_name + "_comms.dat";
 
     cout << "input data file: " << input_data_file << endl;
     cout << "input data file: " << input_comm_file << endl;
@@ -350,7 +351,7 @@ int main(int argc, char **argv)
 
     // WRITE RESULTS TO FILE 
     ofstream output_file;
-    string fname = OUTPUT_directory + "mcm_results.dat";
+    string fname = OUTPUT_directory + input_name + "_mcm_results.dat";
     output_file.open(fname);
 
     cout << "######### EMPIRICAL #########" << endl;
@@ -361,7 +362,7 @@ int main(int argc, char **argv)
     cout << "#########  GREEDY   #########" << endl;
     // Log evidence of MCM
     double LE_g = LogE_MCM(Kset, fp1, N);
-    Print_Partition(fp1);
+    Print_Partition(fp1, input_name);
 
     cout << "Elapsed time      : " << elapsed.count() << "s" << endl;
     cout << "Log-evidence      : " << LE_g << endl;

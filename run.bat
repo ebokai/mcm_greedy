@@ -1,2 +1,2 @@
-.\mcm_greedy.exe sampled_x community_x
+.\mcm_greedy.exe my_filename
 pause
