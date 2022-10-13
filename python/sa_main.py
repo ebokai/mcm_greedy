@@ -35,6 +35,8 @@ if __name__ == '__main__':
 
 	for run in range(runs):
 
+		print(f'RUN: {str(run).zfill(2)} ==================')
+
 		T = T0
 
 		partition = best_partition
