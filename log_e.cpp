@@ -5,6 +5,7 @@
 /**************************   MODEL COMPLEXITY   ******************************/
 /******************************************************************************/
 double GeomComplexity_SubCM(unsigned int m);
+// defined in complexity.cpp
 
 /******************************************************************************/
 /**************** Log-Evidence (LogE) of a sub-complete model  ****************/
@@ -21,16 +22,21 @@ double LogE_SubC_forMCM(map<__int128_t, unsigned int> Kset, uint32_t m, unsigned
   map<__int128_t, unsigned int>::iterator it;
   unsigned int Ncontrol = 0; // for control
   unsigned int Ks = 0;
+  unsigned int ns = 0;
+  double logpi = log(M_PI)/2;
 
   for (it = Kset.begin(); it!=Kset.end(); ++it)
   {
     Ks = (it->second);  Ncontrol += Ks;
     if (Ks == 0) {cout << "problem Ks = 0 for some mu_m" << endl; }
-    LogE += lgamma(Ks + 0.5);
+    LogE += lgamma(Ks + 0.5) - logpi;
+    ns += 1;
   }
   if (Ncontrol != N) { cout << "Error Likelihood function: Ncontrol != N" << endl;  }
 
-  return LogE - GeomComplexity_SubCM(m) - lgamma( (double)( N + (1UL << (m-1)) ) );
+  // cout << "For this partition, m: " << m << " and " << ns << " observed states. " << pow(2,m) << endl;
+
+  return LogE - lgamma( (double)( N + (1UL << (m-1)) ) ) + lgamma( (double)((1UL << (m-1)) ) ); // - GeomComplexity_SubCM(m)
 }
 
 /******************************************************************************/

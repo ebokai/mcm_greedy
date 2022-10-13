@@ -314,39 +314,39 @@ int main(int argc, char **argv)
     cout << "input data file: " << input_data_file << endl;
     cout << "input community file: " << input_comm_file << endl;
 
-    cout << "--->> Create OUTPUT Folder: (if needed) ";
-    system(("mkdir -p " + OUTPUT_directory).c_str());
-    cout << endl;
+    // cout << "--->> Create OUTPUT Folder: (if needed) ";
+    // system(("mkdir -p " + OUTPUT_directory).c_str());
+    // cout << endl;
 
-    cout << endl << "*******************************************************************************************";
-    cout << endl << "***********************************  Read the data:  **************************************";
-    cout << endl << "*******************************************************************************************" << endl;
+    // cout << endl << "*******************************************************************************************";
+    // cout << endl << "***********************************  Read the data:  **************************************";
+    // cout << endl << "*******************************************************************************************" << endl;
 
     unsigned int N = 0; // will contain the number of datapoints in the dataset
     map<__int128_t, unsigned int> Kset = read_datafile(&N, input_data_file);
 
-    if (N == 0) { return 0; } // Terminate program if the file can't be found
+    // if (N == 0) { return 0; } // Terminate program if the file can't be found
 
-    cout << endl << "                        ###### File has been read succesfully ######" << endl;
+    // cout << endl << "                        ###### File has been read succesfully ######" << endl;
 
-    //cout << endl << "*******************************************************************************************";
-    //cout << endl << "*********************************  Change the data basis   ********************************";
-    //cout << endl << "**************************************  Build Kset:  **************************************";
-    //cout << endl << "*******************************************************************************************" << endl;
-    //// *** Transform the data in the specified in Basis_SCModel[];
-    ////map<__int128_t, unsigned int> Kset = build_Kset(Nset, Basis_li, false);
+    // //cout << endl << "*******************************************************************************************";
+    // //cout << endl << "*********************************  Change the data basis   ********************************";
+    // //cout << endl << "**************************************  Build Kset:  **************************************";
+    // //cout << endl << "*******************************************************************************************" << endl;
+    // //// *** Transform the data in the specified in Basis_SCModel[];
+    // ////map<__int128_t, unsigned int> Kset = build_Kset(Nset, Basis_li, false);
 
-    cout << endl << "*******************************************************************************************";
-    cout << endl << "******************************  Hierachical merging result:  ******************************";
-    cout << endl << "*******************************************************************************************" << endl;
+    // cout << endl << "*******************************************************************************************";
+    // cout << endl << "******************************  Hierachical merging result:  ******************************";
+    // cout << endl << "*******************************************************************************************" << endl;
 
-    // *** Calculate the optimal partition
-    auto start = chrono::system_clock::now();
-    map<unsigned int, __int128_t> fp1 = Matrix(Kset, N);
-    auto end = chrono::system_clock::now();
+    // // *** Calculate the optimal partition
+    // auto start = chrono::system_clock::now();
+    // map<unsigned int, __int128_t> fp1 = Matrix(Kset, N);
+    // auto end = chrono::system_clock::now();
 
-    // *** Time it takes to find partition
-    chrono::duration<double> elapsed = end - start;
+    // // *** Time it takes to find partition
+    // chrono::duration<double> elapsed = end - start;
 
 
     // WRITE RESULTS TO FILE 
@@ -354,20 +354,20 @@ int main(int argc, char **argv)
     string fname = OUTPUT_directory + input_name + "_mcm_results.dat";
     output_file.open(fname);
 
-    cout << "######### EMPIRICAL #########" << endl;
-    // Entropy of dataset
-    double H = Entropy(Kset, N);
-    cout << "H : " << H << ". Range: [0, " << n << "]" << endl << endl;
+    // cout << "######### EMPIRICAL #########" << endl;
+    // // Entropy of dataset
+    // double H = Entropy(Kset, N);
+    // cout << "H : " << H << ". Range: [0, " << n << "]" << endl << endl;
     
-    cout << "#########  GREEDY   #########" << endl;
-    // Log evidence of MCM
-    double LE_g = LogE_MCM(Kset, fp1, N);
-    Print_Partition(fp1, input_name);
+    // cout << "#########  GREEDY   #########" << endl;
+    // // Log evidence of MCM
+    // double LE_g = LogE_MCM(Kset, fp1, N);
+    // Print_Partition(fp1, input_name);
 
-    cout << "Elapsed time      : " << elapsed.count() << "s" << endl;
-    cout << "Log-evidence      : " << LE_g << endl;
+    // cout << "Elapsed time      : " << elapsed.count() << "s" << endl;
+    // cout << "Log-evidence      : " << LE_g << endl;
     
-    cout << "Average comm size : " << (double)n / (double)fp1.size() << endl << endl;
+    // cout << "Average comm size : " << (double)n / (double)fp1.size() << endl << endl;
 
     cout << "#########  THEORETICAL   #########" << endl;
     map<unsigned int, __int128_t> fp2 = read_communities(input_comm_file);
@@ -378,22 +378,22 @@ int main(int argc, char **argv)
     cout << "Log-evidence      : " << LE_t << endl;
     cout << "Average comm size : " << (double) n / (double) fp2.size() << endl << endl;
 
-    cout << "#########  COMPARATIVE MEASURES   #########" << endl;
-    double VOI = Var_of_Inf(fp1, fp2);
-    double NMI = Norm_Mut_info(fp1, fp2);
-    string istrue = is_subset(fp1, fp2) ? "Yes" : "No";
+    // cout << "#########  COMPARATIVE MEASURES   #########" << endl;
+    // double VOI = Var_of_Inf(fp1, fp2);
+    // double NMI = Norm_Mut_info(fp1, fp2);
+    // string istrue = is_subset(fp1, fp2) ? "Yes" : "No";
 
-    cout << "Is MCM_g \'subset\' of MCM_t    : " << istrue << endl;
-    cout << "Variation of Information      : " << VOI << endl;
-    cout << "Normalized Mutual Information : " << NMI << endl;
-    cout << "Difference in Log-Evidence    : " << LE_g - LE_t << endl << endl;
+    // cout << "Is MCM_g \'subset\' of MCM_t    : " << istrue << endl;
+    // cout << "Variation of Information      : " << VOI << endl;
+    // cout << "Normalized Mutual Information : " << NMI << endl;
+    // cout << "Difference in Log-Evidence    : " << LE_g - LE_t << endl << endl;
 
-    output_file << "entropy;" << H << "\n";
-    output_file << "LOGE_mcm;" << LE_g << "\n";
+    // output_file << "entropy;" << H << "\n";
+    // output_file << "LOGE_mcm;" << LE_g << "\n";
     output_file << "LOGE_true;" << LE_t << "\n";
-    output_file << "DLOGE;" << LE_g - LE_t << "\n";
-    output_file << "VOI;" << VOI << "\n";
-    output_file << "NMI;" << NMI << "\n";
+    // output_file << "DLOGE;" << LE_g - LE_t << "\n";
+    // output_file << "VOI;" << VOI << "\n";
+    // output_file << "NMI;" << NMI << "\n";
 
     output_file.close();
 

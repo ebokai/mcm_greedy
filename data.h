@@ -15,8 +15,8 @@ const unsigned int n = 20;                          // number of spin variables
 const __int128_t un = 1;
 const __int128_t NOp_tot = (un << n) - 1;
 const unsigned int alpha = 3;
-const string INPUT_directory = "INPUT/";
-const string OUTPUT_directory = "OUTPUT/";
+const string INPUT_directory = "./data/";
+const string OUTPUT_directory = "./mcm/";
 
 
 
