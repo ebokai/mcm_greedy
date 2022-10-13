@@ -45,8 +45,6 @@ The code uses the C++11 version of C++.
 use setup.bat
 
 **To execute:** 
-use run.bat (specify input filename)
-
 use `.\mcm_greedy.exe <FILENAME>` 
 
 ## License
