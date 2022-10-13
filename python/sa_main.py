@@ -47,15 +47,17 @@ if __name__ == '__main__':
 
 		while an_step < max_an_steps:
 
+			# CREATE PARTITION CANDIDATE
 			i = np.random.randint(len(candidate_functions))
 			candidate_function = candidate_functions[i]
-
 			partition_copy = [x[:] for x in partition]
 			new_partition = candidate_function(partition_copy)
 
+			# EVALUATE NEW PARTITION
 			new_logE = mcm_evidence(data, new_partition)
 			delta_logE = new_logE - logE
 
+			# CHECK FOR IMPROVEMENT IN LOG E
 			if new_logE > best_logE:
 				logE_change = new_logE - best_logE
 				best_logE = new_logE
@@ -65,14 +67,14 @@ if __name__ == '__main__':
 			else:
 				steps_since_improvement += 1
 
+			# METROPOLIS STEP 
 			p = np.exp(delta_logE/T)
-
 			if p > np.random.random():
 				partition = new_partition
 				logE = new_logE
 
+			# UPDATE TEMPERATURE
 			T = T0 * (1 - an_step/max_an_steps)
-
 			an_step += 1
 
 
