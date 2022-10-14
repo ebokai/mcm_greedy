@@ -48,7 +48,7 @@ map<int, int> merge_partition(map<int,int> partition){
 		pi = partition[i];
 		if (pi == p1){
 			new_partition[i] = p3;
-			cout << "merged C" << p1 << " by assigning node " << i << " to C" << p3 << endl;
+			//cout << "merged C" << p1 << " by assigning node " << i << " to C" << p3 << endl;
 		} else {
 			new_partition[i] = pi;
 		}
@@ -82,7 +82,7 @@ map<int, int> split_partition(map<int,int> partition){
 		pi = partition[i];
 		if (pi == p1){
 			new_partition[i] = rand_ab(p1, np+1);
-			cout << "split C" << p1 << " by assigning node " << i << " to C" << new_partition[i] << endl;
+			//cout << "split C" << p1 << " by assigning node " << i << " to C" << new_partition[i] << endl;
 		}
 	}
 
@@ -106,7 +106,7 @@ map<int, int> switch_partition(map<int,int> partition){
 
 	partition[node] = p1;
 
-	cout << "switched node " << node << " from C" << pn << " to C" << p1 << endl;
+	//cout << "switched node " << node << " from C" << pn << " to C" << p1 << endl;
 
 	return partition;
 }
