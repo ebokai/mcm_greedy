@@ -23,7 +23,7 @@ int main(int argc, char **argv){
 	double logE = evidence(partition, data, N);
 	double best_logE = logE;
 	double new_logE, delta_logE;
-	float p, u;
+	double p, u;
 	float T = 100, T0 = 100;
 
 	for (int run = 0; run < 50; run++){
@@ -33,19 +33,24 @@ int main(int argc, char **argv){
 		T = T0;
 		partition = best_partition;
 		logE = best_logE;
+		int na = 0;
 
 		for (int step = 0; step < max_steps; step++){
 
 			int f = rand()/(RAND_MAX/3);
 			switch(f){
+
 				case 0:
 				new_partition = merge_partition(partition);
+				break;
 
 				case 1:
 				new_partition = split_partition(partition);
+				break;
 
 				case 2:
 				new_partition = switch_partition(partition);
+				break;
 			}
 
 			new_logE = evidence(new_partition, data, N);
@@ -55,14 +60,15 @@ int main(int argc, char **argv){
 				best_logE = new_logE;
 				best_partition = new_partition;
 				cout << T << " " << best_logE << " ";
-				partition_print(partition);
+				partition_print(new_partition);
 
 			}
 
 			p = exp(delta_logE/T);
-			u = static_cast <float> (rand()) / static_cast <float> (RAND_MAX);
+			u = static_cast <double> (rand()) / static_cast <double> (RAND_MAX);
 
 			if (p > u){
+				na += 1;
 				partition = new_partition;
 				logE = new_logE;
 			}
@@ -70,6 +76,8 @@ int main(int argc, char **argv){
 			T = T0 * (1 - (float)step/(float)max_steps);
 
 		}
+
+		cout << na << endl;
 	}
 
 	

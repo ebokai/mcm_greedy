@@ -12,17 +12,24 @@ int rand_ab(int a, int b){
 }
 
 int max_comm(map<int,int> partition){
-	return max_element(partition.begin(), partition.end(), compare) -> second;
+	int maxc = 0;
+	for (int i = 0; i < n; i++){
+		if(partition[i] > maxc){
+			maxc = partition[i];
+		}
+	}
+
+	return maxc;
 }
 
 // MERGE PARTITIONS 
 map<int, int> merge_partition(map<int,int> partition){
 
-	int np = max_comm(partition);
+	int np = max_comm(partition) + 1;
 	if (np < 2){return partition;}
 
 	int p1 = 0, p2 = 0;
-	int pi, p3;
+	int pi;
 	map<int, int> new_partition;
 
 	// pick two distinct communities
@@ -31,26 +38,29 @@ map<int, int> merge_partition(map<int,int> partition){
 		p2 = rand() / (RAND_MAX/np);
 	}
 
-	/* make sure there are no empty communities of lower index  
-	so no [0,1,2,3] => [0,2,3] but [0,1,2,3] => [0,1,2]
-	this allows simply using random number to pick a community in 
-	the split_partition function */
+	int plow, phigh;
 
-	if (p2 == np){
-		p3 = p1;
-		p1 = p2;
+	if (p1 > p2){
+		phigh = p1;
+		plow = p2;
 	} else {
-		p3 = p2;
+		phigh = p2;
+		plow = p1;
 	}
 
-	// re-assign nodes 
 	for (int i = 0; i < n; i++){
 		pi = partition[i];
-		if (pi == p1){
-			new_partition[i] = p3;
-			//cout << "merged C" << p1 << " by assigning node " << i << " to C" << p3 << endl;
+		if (pi == phigh){
+			new_partition[i] = plow;
 		} else {
 			new_partition[i] = pi;
+		}
+	}
+
+	for (int i = 0; i < n; i++){
+		pi = new_partition[i];
+		if (pi > phigh){
+			new_partition[i] -= 1;
 		}
 	}
 
@@ -60,7 +70,7 @@ map<int, int> merge_partition(map<int,int> partition){
 // SPLIT PARTITIONS
 map<int, int> split_partition(map<int,int> partition){
 
-	int np = max_comm(partition);
+	int np = max_comm(partition) + 1;
 	
 	// pick a random community 
 	int p1 = rand()/(RAND_MAX/np);
@@ -77,12 +87,23 @@ map<int, int> split_partition(map<int,int> partition){
 	if (np1 < 2) {return partition;}
 	map<int, int> new_partition;
 
+	int nx = 0;
+
 	// randomly assign nodes to new community 
 	for (int i = 0; i < n; i++){
 		pi = partition[i];
+
 		if (pi == p1){
-			new_partition[i] = rand_ab(p1, np+1);
-			//cout << "split C" << p1 << " by assigning node " << i << " to C" << new_partition[i] << endl;
+			if (nx == 0){
+				// keep at least one node in original community
+				new_partition[i] = p1;
+				nx += 1;
+			} else {
+				new_partition[i] = rand_ab(p1, np);
+			}
+			
+		} else {
+			new_partition[i] = pi;
 		}
 	}
 
@@ -98,15 +119,21 @@ map<int, int> switch_partition(map<int,int> partition){
 	int node = rand()/(RAND_MAX/n);
 	int pn = partition[node];
 
-	int p1 = rand()/(RAND_MAX/np);
+	// prevent emptying partition 
+	int nx = 0;
+	for (int i = 0; i < n; i++){
+		if(partition[i] == pn){
+			nx += 1;
+		}
+	}
 
+	if (nx == 1){return partition;}
+
+	int p1 = rand()/(RAND_MAX/np);
 	while (p1 == pn){
 		p1 = rand()/(RAND_MAX/np);
 	} 
-
 	partition[node] = p1;
-
-	//cout << "switched node " << node << " from C" << pn << " to C" << p1 << endl;
 
 	return partition;
 }
