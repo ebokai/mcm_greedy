@@ -28,7 +28,7 @@ int main(int argc, char **argv){
 
 	for (int run = 0; run < 50; run++){
 
-		cout << "RUN: " << run << "====================" << endl;
+		cout << "RUN: " << run << " ====================" << endl;
 
 		T = T0;
 		partition = best_partition;
@@ -54,7 +54,7 @@ int main(int argc, char **argv){
 			if (new_logE > best_logE){
 				best_logE = new_logE;
 				best_partition = new_partition;
-				cout << best_logE << " ";
+				cout << T << " " << best_logE << " ";
 				partition_print(partition);
 
 			}
@@ -67,7 +67,7 @@ int main(int argc, char **argv){
 				logE = new_logE;
 			}
 
-			T = T0 * (1 - step/max_steps);
+			T = T0 * (1 - (float)step/(float)max_steps);
 
 		}
 	}
