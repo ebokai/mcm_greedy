@@ -4,7 +4,7 @@ import numpy as np
 def mcm_evidence(data, partition):
 
 	# data should be an N x n array
-	# with states in "list" format 
+	# with states in "list" format, i.e.
 	# data = [[0,0,1],[1,1,1],[1,0,0],...]
 
 	logE = 0
@@ -13,12 +13,12 @@ def mcm_evidence(data, partition):
 
 	for p in partition:
 
-		if len(p) == 0: continue
+		ra = len(p)
 
+		if ra == 0: continue
+		
 		data_p = data[:,p]
 		data_p = [''.join([str(s) for s in state]) for state in data_p]
-
-		ra = len(p)
 
 		u,c = np.unique(data_p, return_counts = True)
 

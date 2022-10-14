@@ -13,7 +13,7 @@ data = np.array([[int(s) for s in state] for state in data])
 
 # INITIAL PARTITION ===========================
 partition = [[1, 2, 7, 12, 0, 15, 16, 5, 13], [8], [6, 3, 10, 19, 18, 11, 4, 17, 9, 14]]
-partition = random_partition(20, 0.2)
+# partition = random_partition(20, 0.2)
 logE = mcm_evidence(data, partition)
 
 best_partition = partition
