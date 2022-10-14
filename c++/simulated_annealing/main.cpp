@@ -13,7 +13,7 @@ int main(int argc, char **argv){
 
 	map<uint32_t, int> data = get_data(N);
 
-	// start with random partition 
+	// INITIAL PARTITION
 	for(int i = 0; i < n; i++){
 		partition[i] = i % 4;
 	}
@@ -26,7 +26,7 @@ int main(int argc, char **argv){
 	double p, u;
 	float T = 100, T0 = 100;
 
-	for (int run = 0; run < 50; run++){
+	for (int run = 0; run < 500; run++){
 
 		cout << "RUN: " << run << " ====================" << endl;
 
@@ -37,6 +37,7 @@ int main(int argc, char **argv){
 
 		for (int step = 0; step < max_steps; step++){
 
+			// PICK RANDOM CANDIDATE FUNCTION
 			int f = rand()/(RAND_MAX/3);
 			switch(f){
 
@@ -53,6 +54,7 @@ int main(int argc, char **argv){
 				break;
 			}
 
+			// EVALUATE NEW PARTITION 
 			new_logE = evidence(new_partition, data, N);
 			delta_logE = new_logE - logE;
 
@@ -61,9 +63,9 @@ int main(int argc, char **argv){
 				best_partition = new_partition;
 				cout << T << " " << best_logE << " ";
 				partition_print(new_partition);
-
 			}
 
+			// METROPOLIS STEP
 			p = exp(delta_logE/T);
 			u = static_cast <double> (rand()) / static_cast <double> (RAND_MAX);
 
@@ -73,6 +75,7 @@ int main(int argc, char **argv){
 				logE = new_logE;
 			}
 
+			// UPDATE TEMPERATURE
 			T = T0 * (1 - (float)step/(float)max_steps);
 
 		}

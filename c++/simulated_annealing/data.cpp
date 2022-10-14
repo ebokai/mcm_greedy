@@ -4,7 +4,7 @@ map<uint32_t, int> get_data(int &N){
 
 	map<uint32_t, int> data;
 	uint32_t state;
-	string fname = "./data/HG19_k6_mu1.00_(20,4,5)_B0.55_N1000_00.dat";
+	string fname = "./data/HG19_k6_mu0.50_(20,4,5)_B0.55_N1000_00.dat";
 	string line, subline;
 	ifstream myfile(fname);
 

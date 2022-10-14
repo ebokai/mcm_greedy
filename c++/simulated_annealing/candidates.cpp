@@ -1,8 +1,7 @@
 #include "header.h"
 
 
-bool compare(const pair<int, int>&a, const pair<int, int>&b)
-{
+bool compare(const pair<int, int>&a, const pair<int, int>&b){
    return a.second<b.second;
 }
 
@@ -13,18 +12,18 @@ int rand_ab(int a, int b){
 
 int max_comm(map<int,int> partition){
 	int maxc = 0;
-	for (int i = 0; i < n; i++){
-		if(partition[i] > maxc){
+	for (int i = 0; i < n; i++)
+	{
+		if(partition[i] > maxc)
+		{
 			maxc = partition[i];
 		}
 	}
-
 	return maxc;
 }
 
 // MERGE PARTITIONS 
 map<int, int> merge_partition(map<int,int> partition){
-
 	int np = max_comm(partition) + 1;
 	if (np < 2){return partition;}
 
@@ -33,7 +32,8 @@ map<int, int> merge_partition(map<int,int> partition){
 	map<int, int> new_partition;
 
 	// pick two distinct communities
-	while (p1 == p2){
+	while (p1 == p2)
+	{
 		p1 = rand() / (RAND_MAX/np);
 		p2 = rand() / (RAND_MAX/np);
 	}
@@ -48,6 +48,7 @@ map<int, int> merge_partition(map<int,int> partition){
 		plow = p1;
 	}
 
+	// merging step
 	for (int i = 0; i < n; i++){
 		pi = partition[i];
 		if (pi == phigh){
@@ -57,6 +58,7 @@ map<int, int> merge_partition(map<int,int> partition){
 		}
 	}
 
+	// update community labels 
 	for (int i = 0; i < n; i++){
 		pi = new_partition[i];
 		if (pi > phigh){
@@ -113,7 +115,7 @@ map<int, int> split_partition(map<int,int> partition){
 // SWITCH NODES BETWEEN COMMS 
 map<int, int> switch_partition(map<int,int> partition){
 
-	int np = max_comm(partition);
+	int np = max_comm(partition) + 1;
 	if (np < 2) {return partition;}
 
 	int node = rand()/(RAND_MAX/n);
@@ -129,6 +131,7 @@ map<int, int> switch_partition(map<int,int> partition){
 
 	if (nx == 1){return partition;}
 
+	// pick new community for node
 	int p1 = rand()/(RAND_MAX/np);
 	while (p1 == pn){
 		p1 = rand()/(RAND_MAX/np);
