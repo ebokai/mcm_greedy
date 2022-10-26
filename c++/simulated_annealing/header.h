@@ -10,7 +10,7 @@ using namespace std;
 
 // PARAMETERS =========================
 const int max_steps = 1000;
-const int n = 20;
+const int n = 9;
 // ====================================
 
 // FUNCTION DEFS ======================

@@ -83,6 +83,5 @@ int main(int argc, char **argv){
 		cout << na << endl;
 	}
 
-	
 	return 0;
 }
