@@ -10,7 +10,7 @@ using namespace std;
 /********************************************************************/
 /**************************    CONSTANTS    *************************/
 /********************************************************************/
-const unsigned int n = 9;                          // number of spin variables
+const unsigned int n = 20;                          // number of spin variables
 
 const __int128_t un = 1;
 const __int128_t NOp_tot = (un << n) - 1;
